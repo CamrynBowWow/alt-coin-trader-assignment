@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
 
-export default function layout({ children }: { children: ReactNode }) {
+export default function dashboardLayout({ children }: { children: ReactNode }) {
 	return <section>{children}</section>;
 }

@@ -9,8 +9,10 @@ import Loading from '@/components/Loading';
 import Retry from './_components/Retry';
 import Select from '@/components/Select';
 import { SORT_OPTIONS, STATUS_OPTIONS } from '@/data/constants';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
+	const router = useRouter();
 	const [products, setProducts] = useState<Product[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
@@ -91,13 +93,15 @@ export default function Page() {
 					<tbody className='divide-y divide-gray-200'>
 						{filteredProducts.length > 0 ? (
 							filteredProducts.map((product) => (
-								<tr key={product.id} className='table-row'>
+								<tr
+									key={product.id}
+									className='table-row'
+									onClick={() => router.push(`/items/${product.id}`)}
+								>
 									<td className='table-data font-medium'>{product.name}</td>
 									<td className='table-data'>{product.category}</td>
 									<td className='table-data'>
-										<span
-											className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusStyles(product.status)}`}
-										>
+										<span className={`table-status-badge-style ${getStatusStyles(product.status)}`}>
 											{product.status}
 										</span>
 									</td>

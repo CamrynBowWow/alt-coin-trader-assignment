@@ -9,3 +9,10 @@ export const fetchProducts = async (shouldFail = false): Promise<Product[]> => {
 
 	return productsData as Product[];
 };
+
+export const getProductById = async (id: string): Promise<Product | null> => {
+	await new Promise((resolve) => setTimeout(resolve, 500));
+
+	const product = productsData.find((p) => p.id === id);
+	return (product as Product) || null;
+};

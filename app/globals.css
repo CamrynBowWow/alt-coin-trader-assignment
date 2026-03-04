@@ -47,6 +47,26 @@ body {
 	.select-svg {
 		@apply h-5 w-5 ml-1 absolute top-2.5 right-1.5 text-slate-700 pointer-events-none;
 	}
+
+	.back-button-style {
+		@apply flex items-center text-slate-600 mb-8 transition-colors outline-1 p-2 rounded-sm cursor-pointer hover:bg-slate-900 hover:text-white;
+	}
+
+	.no-product-container {
+		@apply flex flex-col items-center justify-center min-h-screen text-center p-6;
+	}
+
+	.no-product-header {
+		@apply text-2xl font-bold text-gray-900;
+	}
+
+	.item-status-badge-style {
+		@apply px-3 py-1 rounded-full text-sm font-semibold border;
+	}
+
+	.table-status-badge-style {
+		@apply px-2 py-1 rounded-full text-xs font-semibold;
+	}
 }
 
 @layer utilities {
@@ -68,5 +88,17 @@ body {
 
 	.select-style {
 		@apply border p-2 rounded text-black cursor-pointer w-full appearance-none;
+	}
+
+	.link-button {
+		@apply px-6 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition;
+	}
+
+	.edit-button {
+		@apply flex-1 bg-slate-900 text-white py-3 rounded-lg font-medium hover:bg-slate-800 transition;
+	}
+
+	.delete-button {
+		@apply px-6 py-3 border border-red-200 text-red-600 rounded-lg font-medium hover:bg-red-50 transition;
 	}
 }
