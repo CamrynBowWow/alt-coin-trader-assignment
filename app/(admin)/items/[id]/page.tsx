@@ -27,37 +27,37 @@ export default function ItemDetailPage() {
 		loadData();
 	}, [id]);
 
-	if (loading) return <Loading message='Loading product details...' />;
+	if (loading) {
+		return <Loading message='Loading product details...' />;
+	}
 
 	if (!product) {
 		return (
-			<>
-				<NoProduct
-					header='Product Not Found'
-					message='We could not find an item with the ID:'
-					id={id}
-				/>
-			</>
+			<NoProduct
+				header='Product Not Found'
+				message='We could not find an item with the ID:'
+				id={id}
+			/>
 		);
 	}
 
 	return (
 		<div className='min-h-screen bg-gray-50 p-8'>
 			<div className='max-w-3xl mx-auto'>
-				<BackButton buttonText='Back to Dashboard' route={() => router.back()} />
+				<BackButton buttonText='Back to Dashboard' route={() => router.push('/dashboard')} />
 
-				<main className='bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden'>
-					<div className='p-8 border-b border-gray-100 flex justify-between items-start'>
+				<main className='item-details-main'>
+					<div className='item-details-product-header-container'>
 						<div>
-							<h1 className='text-3xl font-bold text-gray-900 mb-2'>{product.name}</h1>
-							<p className='text-lg text-gray-500'>{product.category}</p>
+							<h1 className='item-product-name'>{product.name}</h1>
+							<p className='item-product-category'>{product.category}</p>
 						</div>
 						<span className={`item-status-badge-style ${getStatusStyles(product.status)}`}>
 							{product.status}
 						</span>
 					</div>
 
-					<div className='p-8 grid grid-cols-1 md:grid-cols-2 gap-8'>
+					<div className='item-details-info-container'>
 						<InfoBlock label='Owner' value={product.owner || 'Unassigned'} />
 						<InfoBlock label='Product ID' value={product.id} />
 						<InfoBlock label='Date Created' value={formatDate(product.createdAt)} />
@@ -65,7 +65,9 @@ export default function ItemDetailPage() {
 					</div>
 
 					<div className='bg-gray-50 p-8 border-t border-gray-100 flex gap-4'>
-						<button className='edit-button'>Edit Product</button>
+						<button onClick={() => router.push(`/items/${id}/edit`)} className='edit-button'>
+							Edit Product
+						</button>
 						<button className='delete-button'>Delete</button>
 					</div>
 				</main>

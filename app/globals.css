@@ -60,12 +60,56 @@ body {
 		@apply text-2xl font-bold text-gray-900;
 	}
 
+	.table-status-badge-style {
+		@apply px-2 py-1 rounded-full text-xs font-semibold;
+	}
+
+	/* Item Detail Page */
+
 	.item-status-badge-style {
 		@apply px-3 py-1 rounded-full text-sm font-semibold border;
 	}
 
-	.table-status-badge-style {
-		@apply px-2 py-1 rounded-full text-xs font-semibold;
+	.item-product-name {
+		@apply text-3xl font-bold text-gray-900 mb-2;
+	}
+
+	.item-product-category {
+		@apply text-lg text-gray-500;
+	}
+
+	.item-details-main {
+		@apply bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden;
+	}
+
+	.item-details-product-header-container {
+		@apply p-8 border-b border-gray-100 flex justify-between items-start;
+	}
+
+	.item-details-info-container {
+		@apply p-8 grid grid-cols-1 md:grid-cols-2 gap-8;
+	}
+
+	/* Item Detail Edit Page */
+
+	.item-edit-container {
+		@apply min-h-screen bg-gray-50 p-8;
+	}
+
+	.item-edit-form {
+		@apply bg-white shadow-sm border border-gray-200 rounded-xl p-8;
+	}
+
+	.item-edit-h1 {
+		@apply text-2xl font-bold text-gray-900;
+	}
+
+	.item-edit-h2 {
+		@apply text-sm text-gray-500;
+	}
+
+	.item-input-product-name {
+		@apply border p-2 rounded text-black w-full;
 	}
 }
 
@@ -95,10 +139,26 @@ body {
 	}
 
 	.edit-button {
-		@apply flex-1 bg-slate-900 text-white py-3 rounded-lg font-medium hover:bg-slate-800 transition;
+		@apply flex-1 bg-slate-900 text-white py-3 rounded-lg font-medium hover:bg-slate-800 transition cursor-pointer;
 	}
 
 	.delete-button {
-		@apply px-6 py-3 border border-red-200 text-red-600 rounded-lg font-medium hover:bg-red-50 transition;
+		@apply px-6 py-3 border border-red-200 text-red-600 rounded-lg font-medium hover:bg-red-100 transition cursor-pointer;
+	}
+
+	.cancel-button {
+		@apply px-6 py-3 border border-red-200 text-red-600 rounded-lg font-medium hover:bg-red-100 transition cursor-pointer;
+	}
+
+	.save-button {
+		@apply bg-slate-900 text-white py-3 px-6 rounded-lg font-medium hover:bg-slate-600 transition disabled:opacity-50 cursor-pointer;
+	}
+
+	.input-error {
+		@apply text-red-500 text-xs mt-1;
+	}
+
+	.form-label {
+		@apply block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2;
 	}
 }

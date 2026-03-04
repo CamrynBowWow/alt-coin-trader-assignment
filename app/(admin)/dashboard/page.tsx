@@ -88,6 +88,7 @@ export default function Page() {
 							<th className='table-header'>Category</th>
 							<th className='table-header'>Status</th>
 							<th className='table-header'>Created</th>
+							<th className='table-header'>Product ID</th>
 						</tr>
 					</thead>
 					<tbody className='divide-y divide-gray-200'>
@@ -108,6 +109,7 @@ export default function Page() {
 									<td className='table-data text-sm text-gray-500'>
 										{formatDate(product.createdAt)}
 									</td>
+									<td className='table-data'>{product.id}</td>
 								</tr>
 							))
 						) : (
