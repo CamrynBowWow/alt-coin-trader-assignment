@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { getProductById } from '@/services/productService';
+import { deleteProduct, getProductById } from '@/services/productService';
 import { getStatusStyles, formatDate } from '@/lib/utils';
 import Loading from '@/components/Loading';
 import InfoBlock from '../_components/InfoBlock';
@@ -16,6 +16,7 @@ export default function ItemDetailPage() {
 
 	const [product, setProduct] = useState<Product | null>(null);
 	const [loading, setLoading] = useState(true);
+	const [isDeleting, setIsDeleting] = useState(false);
 
 	useEffect(() => {
 		async function loadData() {
@@ -26,6 +27,26 @@ export default function ItemDetailPage() {
 		}
 		loadData();
 	}, [id]);
+
+	const handleDelete = async () => {
+		const confirmed = window.confirm(
+			`Are you sure you want to delete "${product?.name}"? This action cannot be undone.`,
+		);
+
+		if (!confirmed) return;
+
+		setIsDeleting(true);
+		try {
+			await deleteProduct(id as string);
+
+			router.refresh();
+
+			router.push('/dashboard');
+		} catch (error) {
+			alert('Failed to delete the product. Please try again.');
+			setIsDeleting(false);
+		}
+	};
 
 	if (loading) {
 		return <Loading message='Loading product details...' />;
@@ -42,7 +63,7 @@ export default function ItemDetailPage() {
 	}
 
 	return (
-		<div className='container'>
+		<div className='min-h-screen bg-gray-50 p-8'>
 			<div className='max-w-3xl mx-auto'>
 				<BackButton buttonText='Back to Dashboard' route={() => router.push('/dashboard')} />
 
@@ -68,7 +89,13 @@ export default function ItemDetailPage() {
 						<button onClick={() => router.push(`/items/${id}/edit`)} className='edit-button'>
 							Edit Product
 						</button>
-						<button className='delete-button'>Delete</button>
+						<button
+							onClick={handleDelete}
+							className={`delete-button ${isDeleting ? 'opacity-50 cursor-not-allowed' : ''}`}
+							disabled={isDeleting}
+						>
+							{isDeleting ? 'Deleting...' : 'Delete'}
+						</button>
 					</div>
 				</main>
 			</div>

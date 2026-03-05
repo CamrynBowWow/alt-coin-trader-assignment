@@ -66,3 +66,15 @@ export const createProduct = async (
 
 	return newProduct;
 };
+
+export const deleteProduct = async (id: string): Promise<void> => {
+	await new Promise((resolve) => setTimeout(resolve, 600));
+
+	const stored = localStorage.getItem(STORAGE_KEY);
+	if (stored) {
+		const products: Product[] = JSON.parse(stored);
+
+		const updatedProducts = products.filter((product) => product.id !== id);
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedProducts));
+	}
+};
