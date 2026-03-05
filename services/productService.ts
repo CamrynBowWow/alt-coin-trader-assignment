@@ -46,3 +46,23 @@ export const updateProduct = async (id: string, updates: Partial<Product>): Prom
 	);
 	localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedProducts));
 };
+
+export const createProduct = async (
+	productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>,
+): Promise<Product> => {
+	await new Promise((resolve) => setTimeout(resolve, 500));
+
+	const products = getStoredProducts();
+
+	const newProduct: Product = {
+		...productData,
+		id: `prod-${Math.random().toString(36).substring(2, 8)}`,
+		createdAt: new Date().toISOString(),
+		updatedAt: new Date().toISOString(),
+	};
+
+	const updatedProducts = [newProduct, ...products];
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedProducts));
+
+	return newProduct;
+};

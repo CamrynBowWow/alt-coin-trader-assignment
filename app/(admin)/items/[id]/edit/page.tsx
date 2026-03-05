@@ -59,14 +59,14 @@ export default function EditProductPage() {
 	}
 
 	return (
-		<div className='item-edit-container'>
+		<div className='container'>
 			<div className='max-w-2xl mx-auto'>
 				<BackButton
 					buttonText='Cancel and Go Back'
 					route={() => router.push(`/items/${product.id}`)}
 				/>
 
-				<form onSubmit={handleSave} className='item-edit-form'>
+				<form onSubmit={handleSave} className='form-style'>
 					<div className='flex gap-0.5 flex-col mb-8'>
 						<h1 className='item-edit-h1'>Edit Product Details</h1>
 						<h2 className='item-edit-h2'>Product ID: {id}</h2>

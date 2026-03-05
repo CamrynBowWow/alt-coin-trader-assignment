@@ -61,7 +61,16 @@ export default function Page() {
 
 	return (
 		<div className='p-8 max-w-6xl mx-auto'>
-			<h1 className='main-header'>Product Administration</h1>
+			<div className='flex justify-between items-center mb-4'>
+				<h1 className='main-header'>Product Administration</h1>
+
+				<button
+					onClick={() => router.push('/items/add')}
+					className='bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition cursor-pointer'
+				>
+					Create Product
+				</button>
+			</div>
 
 			<div className='flex flex-wrap gap-4 mb-6 items-center'>
 				<input
